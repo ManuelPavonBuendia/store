@@ -12,7 +12,7 @@ public class FindPokemonUseCase {
         List<Pokemon> lista = new ArrayList<>();
         lista.add(new Pokemon(1, "Pikachu", "Eléctrico", "Pikachu.png", 25.0, LocalDateTime.now()));
         lista.add(new Pokemon(2, "Charmander", "Fuego", "Charmander.png", 15.0, LocalDateTime.now()));
-        lista.add(new Pokemon(2, "Squirtle", "Agua", "Squirtle.png", 15.0, LocalDateTime.now()));
+        lista.add(new Pokemon(3, "Squirtle", "Agua", "Squirtle.png", 15.0, LocalDateTime.now()));
 
         return lista;
     }
