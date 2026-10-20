@@ -5,10 +5,8 @@ import org.springframework.context.annotation.Configuration;
 
 import es.etg.daw.dawes.store.pokemon.application.service.CreatePokemonService;
 import es.etg.daw.dawes.store.pokemon.application.service.FindPokemonService;
-import es.etg.daw.dawes.store.pokemon.application.service.DeletePokemonService;
 import es.etg.daw.dawes.store.pokemon.application.usecase.CreatePokemonUseCase;
 import es.etg.daw.dawes.store.pokemon.application.usecase.FindPokemonUseCase;
-import es.etg.daw.dawes.store.pokemon.application.usecase.DeletePokemonUseCase;
 import lombok.RequiredArgsConstructor;
 
 @Configuration
