@@ -31,7 +31,6 @@ public class PokemonController {
 
   private final CreatePokemonService createPokemonService;
   private final FindPokemonService findPokemonService;
-  private final DeletePokemonService deletePokemonService;
 
   @PostMapping
   @ResponseBody
@@ -67,10 +66,4 @@ public class PokemonController {
         .toList();
   }
 
-  @DeleteMapping("/{id}")
-  public ResponseEntity<?> deletePokemon(@PathVariable int id) {
-    deletePokemonService.delete(id);
-    return ResponseEntity.noContent().build();
-
-  }
 }
