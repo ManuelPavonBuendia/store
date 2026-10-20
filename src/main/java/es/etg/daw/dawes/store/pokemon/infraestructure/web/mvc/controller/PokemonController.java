@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import es.etg.daw.dawes.store.pokemon.application.command.CreatePokemonCommand;
 import es.etg.daw.dawes.store.pokemon.application.service.CreatePokemonService;
 import es.etg.daw.dawes.store.pokemon.application.service.FindPokemonService;
-import es.etg.daw.dawes.store.pokemon.application.service.DeletePokemonService;
 import es.etg.daw.dawes.store.pokemon.domain.model.Pokemon;
 import es.etg.daw.dawes.store.pokemon.infraestructure.mapper.PokemonMapper;
 import es.etg.daw.dawes.store.pokemon.infraestructure.web.mvc.dto.PokemonRequest;

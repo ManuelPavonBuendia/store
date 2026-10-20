@@ -35,14 +35,4 @@ public class PokemonConfig {
         return new FindPokemonService(findPokemonUseCase());
     }
 
-    @Bean
-    public DeletePokemonUseCase deletePokemonUseCase() {
-        return new DeletePokemonUseCase();
-    }
-
-    @Bean
-    public DeletePokemonService deletePokemonService() {
-        return new DeletePokemonService(deletePokemonUseCase());
-    }
-
 }
