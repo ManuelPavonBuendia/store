@@ -8,9 +8,7 @@
 
 Este proyecto trata de la creación de una aplicación web que simula una tienda de compra de pokemons.
 
-
-
-## Arquitectura
+Realizado por Aitor Rebato, Manuel Pavón, Alexis Rodríguez y Víctor Sánchez.
 
 
 
