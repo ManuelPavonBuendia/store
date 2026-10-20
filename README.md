@@ -14,34 +14,35 @@ Este proyecto trata de la creación de una aplicación web que simula una tienda
 
 
 
-├── pokemon
-│ ├── application
-│ │ ├── command
-│ │ │ └── CreatePokemonCommand.java
-│ │ ├── service
-│ │ │ ├── CreatePokemonService.java
-│ │ │ └── FindPokemonService.java
-│ │ └── usecase
-│ │ ├── CreatePokemonUseCase.java
-│ │ └── FindPokemonUseCase.java
-│ ├── domain
-│ │ └── model
-│ │ └── Pokemon.java
-│ └── infraestructure
-│ ├── config
-│ │ └── PokemonConfig.java
-│ ├── mapper
-│ │ └── PokemonMapper.java
-│ └── web
-│ └── mvc
-│ ├── controller
-│ │ └── PokemonController.java
-│ └── dto
-│ ├── PokemonRequest.java
-│ └── PokemonResponse.java
+## Arquitectura
 
-...
-
+```text
+pokemon/
+├── application/
+│   ├── command/
+│   │   └── CreatePokemonCommand.java
+│   ├── service/
+│   │   ├── CreatePokemonService.java
+│   │   └── FindPokemonService.java
+│   └── usecase/
+│       ├── CreatePokemonUseCase.java
+│       └── FindPokemonUseCase.java
+├── domain/
+│   └── model/
+│       └── Pokemon.java
+└── infrastructure/
+    ├── config/
+    │   └── PokemonConfig.java
+    ├── mapper/
+    │   └── PokemonMapper.java
+    └── web/
+        └── mvc/
+            ├── controller/
+            │   └── PokemonController.java
+            └── dto/
+                ├── PokemonRequest.java
+                └── PokemonResponse.java
+```
 
 
 ### Técnicas utilizadas
@@ -61,5 +62,6 @@ de esta manera evitariamos romper la aplicación por completo al desacoplar los 
 - Reestructuración del documento `README.md` en una estructura de carpetas para fomentar un ecosistema de trabajo organizado, limpio y sencillo.
 - Reestructuración de la clase `Pokemon.java`.
 - Eliminación de los HTML's en el controller.
-
+- Implementación de base de datos para persistir la información.
+- Agregar la funcionalidad de eliminar.
 
