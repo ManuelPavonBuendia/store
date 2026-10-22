@@ -4,8 +4,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import es.etg.daw.dawes.store.pokemon.application.service.CreatePokemonService;
+import es.etg.daw.dawes.store.pokemon.application.service.EditPokemonService;
 import es.etg.daw.dawes.store.pokemon.application.service.FindPokemonService;
 import es.etg.daw.dawes.store.pokemon.application.usecase.CreatePokemonUseCase;
+import es.etg.daw.dawes.store.pokemon.application.usecase.EditPokemonUseCase;
 import es.etg.daw.dawes.store.pokemon.application.usecase.FindPokemonUseCase;
 import lombok.RequiredArgsConstructor;
 
@@ -31,6 +33,16 @@ public class PokemonConfig {
     @Bean
     public FindPokemonService findPokemonService() {
         return new FindPokemonService(findPokemonUseCase());
+    }
+
+    @Bean
+    public EditPokemonUseCase editPokemonUseCase() {
+        return new EditPokemonUseCase();
+    }
+
+    @Bean
+    public EditPokemonService editPokemonService() {
+        return new EditPokemonService(editPokemonUseCase());
     }
 
 }
