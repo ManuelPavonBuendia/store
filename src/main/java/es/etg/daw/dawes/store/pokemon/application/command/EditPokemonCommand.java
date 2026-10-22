@@ -6,7 +6,7 @@ import lombok.experimental.Accessors;
 
 @Getter
 @AllArgsConstructor
-@Accessors(fluent = true) // Así los getters no llevan prefijo get
+@Accessors(fluent = true)  
 public class EditPokemonCommand {
 
     private int id;

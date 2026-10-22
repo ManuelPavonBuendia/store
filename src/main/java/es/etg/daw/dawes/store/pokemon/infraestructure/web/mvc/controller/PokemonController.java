@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
-@RequestMapping("/pokemons") // URL será /pokemons
+@RequestMapping("/pokemons") 
 @RequiredArgsConstructor
 
 public class PokemonController {
@@ -82,7 +82,7 @@ public class PokemonController {
     public PokemonResponse editPokemon(@PathVariable int id, @RequestBody PokemonRequest pokemonRequest){
         EditPokemonCommand comando = PokemonMapper.toCommand(id, pokemonRequest);
         Pokemon pokemon = editPokemonService.update(comando);
-        return  PokemonMapper.toResponse(pokemon); //Respuesta
+        return  PokemonMapper.toResponse(pokemon); 
     }
 
 }
