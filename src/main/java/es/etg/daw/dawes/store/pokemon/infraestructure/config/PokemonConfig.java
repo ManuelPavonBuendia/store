@@ -30,7 +30,7 @@ public class PokemonConfig {
 
     @Bean
     public FindPokemonUseCase findPokemonUseCase() {
-        return new FindPokemonUseCase();
+        return new FindPokemonUseCase(pokemonRepository);
     }
 
     @Bean
@@ -40,7 +40,7 @@ public class PokemonConfig {
 
     @Bean
     public DeletePokemonUseCase deletePokemonUseCase() {
-        return new DeletePokemonUseCase();
+        return new DeletePokemonUseCase(pokemonRepository);
     }
 
     @Bean
@@ -50,7 +50,7 @@ public class PokemonConfig {
 
     @Bean
     public EditPokemonUseCase editPokemonUseCase() {
-        return new EditPokemonUseCase();
+        return new EditPokemonUseCase(pokemonRepository);
     }
 
     @Bean
