@@ -10,20 +10,21 @@ import es.etg.daw.dawes.store.pokemon.application.service.DeletePokemonService;
 import es.etg.daw.dawes.store.pokemon.application.usecase.CreatePokemonUseCase;
 import es.etg.daw.dawes.store.pokemon.application.usecase.EditPokemonUseCase;
 import es.etg.daw.dawes.store.pokemon.application.usecase.FindPokemonUseCase;
+import es.etg.daw.dawes.store.pokemon.domain.repository.PokemonRepository;
 import es.etg.daw.dawes.store.pokemon.application.usecase.DeletePokemonUseCase;
 import lombok.RequiredArgsConstructor;
 
 @Configuration
 @RequiredArgsConstructor
 public class PokemonConfig {
-
+    private final PokemonRepository pokemonRepository;
     @Bean
     public CreatePokemonUseCase createPokemonUseCase() {
-        return new CreatePokemonUseCase();
+        return new CreatePokemonUseCase(pokemonRepository);
     }
 
-    @Bean
-    public CreatePokemonService createPokemonService() {
+    @Bean 
+    public CreatePokemonService createPokemonService(){
         return new CreatePokemonService(createPokemonUseCase());
     }
 
