@@ -5,9 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
-@Data 
+@Data
 @AllArgsConstructor
-@Builder 
+@Builder
 public class Pokemon {
 
     private int id;
@@ -16,5 +16,5 @@ public class Pokemon {
     private String foto;
     private double precio;
     private LocalDateTime createdAt;
-    
+
 }

@@ -7,20 +7,20 @@ import es.etg.daw.dawes.store.pokemon.infraestructure.web.mvc.dto.PokemonRequest
 import es.etg.daw.dawes.store.pokemon.infraestructure.web.mvc.dto.PokemonResponse;
 
 public class PokemonMapper {
-    
-    public static CreatePokemonCommand toCommand(PokemonRequest request){
-        return new CreatePokemonCommand(request.nombre(), 
-                                    request.tipo(),request.foto(),
-                                    request.precio());
+
+    public static CreatePokemonCommand toCommand(PokemonRequest request) {
+        return new CreatePokemonCommand(request.nombre(),
+                request.tipo(), request.foto(),
+                request.precio());
     }
 
-    public static PokemonResponse toResponse (Pokemon pokemon){
-        return new PokemonResponse(pokemon.getId(), pokemon.getNombre(), 
-                                pokemon.getTipo(), pokemon.getFoto(), 
-                                pokemon.getPrecio(), pokemon.getCreatedAt());
+    public static PokemonResponse toResponse(Pokemon pokemon) {
+        return new PokemonResponse(pokemon.getId(), pokemon.getNombre(),
+                pokemon.getTipo(), pokemon.getFoto(),
+                pokemon.getPrecio(), pokemon.getCreatedAt());
     }
 
-    public static EditPokemonCommand toCommand(int id, PokemonRequest request){
-        return new EditPokemonCommand(id,request.foto(), request.precio());
+    public static EditPokemonCommand toCommand(int id, PokemonRequest request) {
+        return new EditPokemonCommand(id, request.foto(), request.precio());
     }
 }

@@ -18,13 +18,14 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class PokemonConfig {
     private final PokemonRepository pokemonRepository;
+
     @Bean
     public CreatePokemonUseCase createPokemonUseCase() {
         return new CreatePokemonUseCase(pokemonRepository);
     }
 
-    @Bean 
-    public CreatePokemonService createPokemonService(){
+    @Bean
+    public CreatePokemonService createPokemonService() {
         return new CreatePokemonService(createPokemonUseCase());
     }
 

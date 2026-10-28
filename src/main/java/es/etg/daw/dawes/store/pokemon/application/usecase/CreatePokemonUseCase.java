@@ -12,16 +12,16 @@ public class CreatePokemonUseCase {
 
     public PokemonRepository pokemonRepository;
 
-    public Pokemon create( CreatePokemonCommand comando){
-        
+    public Pokemon create(CreatePokemonCommand comando) {
+
         Pokemon pokemon = Pokemon.builder()
-                                 .nombre(comando.nombre())
-                                 .tipo(comando.tipo())
-                                 .foto(comando.foto())
-                                 .precio(comando.precio())
-                                 .createdAt(LocalDateTime.now()).build();
+                .nombre(comando.nombre())
+                .tipo(comando.tipo())
+                .foto(comando.foto())
+                .precio(comando.precio())
+                .createdAt(LocalDateTime.now()).build();
 
         return pokemonRepository.save(pokemon);
     }
-    
+
 }
