@@ -14,6 +14,12 @@ La segunda técnica utilizada es la __arquitectura Clean__ esta arquitectura sep
 
 De esta forma se evita romper la aplicación por completo al desacoplar los componentes.
 
+## PRUEBAS
+
+Para eliminar un pokemon se tiene que usar el comando ```curl -X DELETE localhost:8080/pokemons/1``` se puede sustituir el *1* por la ID del pokémon a eliminar
+
+Para probar las funciones de editar se tiene que usar el comando ```curl -X PUT localhost:8080/pokemons/1 --json '{"foto":"nueva.png", "precio":30}'``` se puede modificar el *1* por la ID del pokémon que quieres modificar y se puede cambiar *nueva.png* y *30* para cambiar la imagen y precio respectivamente.
+
 ## TECNOLOGÍAS USADAS
 
 - Java v.17
