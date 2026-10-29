@@ -78,6 +78,7 @@ public class PokemonController {
 
   }
 
+  @ResponseBody 
   @PutMapping("/{id}")
   public PokemonResponse editPokemon(@PathVariable int id, @RequestBody PokemonRequest pokemonRequest) {
     EditPokemonCommand comando = PokemonMapper.toCommand(id, pokemonRequest);
