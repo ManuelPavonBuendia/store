@@ -1,9 +1,7 @@
 package es.etg.daw.dawes.store.pokemon.application.usecase;
 
-import java.util.List;
 
 import es.etg.daw.dawes.store.pokemon.application.command.EditPokemonCommand;
-import es.etg.daw.dawes.store.pokemon.domain.error.PokemonNotFoundException;
 import es.etg.daw.dawes.store.pokemon.domain.model.Pokemon;
 import es.etg.daw.dawes.store.pokemon.domain.repository.PokemonRepository;
 import lombok.AllArgsConstructor;
@@ -11,19 +9,11 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class EditPokemonUseCase {
 
-    public PokemonRepository pokemonRepository;
+    private final PokemonRepository pokemonRepository;
+    private final FindPokemonByIdUseCase findPokemonByIdUseCase;
 
     public Pokemon update(EditPokemonCommand command) {
-
-        List<Pokemon> pokemons = pokemonRepository.getAll();
-
-        if (pokemons.isEmpty())
-            throw new PokemonNotFoundException();
-
-        if(pokemonRepository.getById(command.id()).isEmpty())
-            throw new PokemonNotFoundException(command.id());
-
-        Pokemon pokemon = pokemonRepository.getById(command.id()).get();
+        Pokemon pokemon = findPokemonByIdUseCase.findById(command.id());
 
         pokemon.setFoto(command.foto());
         pokemon.setPrecio(command.precio());
