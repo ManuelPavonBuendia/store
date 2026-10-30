@@ -9,6 +9,7 @@ import es.etg.daw.dawes.store.pokemon.application.service.FindPokemonService;
 import es.etg.daw.dawes.store.pokemon.application.service.DeletePokemonService;
 import es.etg.daw.dawes.store.pokemon.application.usecase.CreatePokemonUseCase;
 import es.etg.daw.dawes.store.pokemon.application.usecase.EditPokemonUseCase;
+import es.etg.daw.dawes.store.pokemon.application.usecase.FindPokemonByIdUseCase;
 import es.etg.daw.dawes.store.pokemon.application.usecase.FindPokemonUseCase;
 import es.etg.daw.dawes.store.pokemon.domain.repository.PokemonRepository;
 import es.etg.daw.dawes.store.pokemon.application.usecase.DeletePokemonUseCase;
@@ -41,7 +42,7 @@ public class PokemonConfig {
 
     @Bean
     public DeletePokemonUseCase deletePokemonUseCase() {
-        return new DeletePokemonUseCase(pokemonRepository);
+        return new DeletePokemonUseCase(pokemonRepository, findPokemonByIdUseCase());
     }
 
     @Bean
@@ -51,12 +52,17 @@ public class PokemonConfig {
 
     @Bean
     public EditPokemonUseCase editPokemonUseCase() {
-        return new EditPokemonUseCase(pokemonRepository);
+        return new EditPokemonUseCase(pokemonRepository, findPokemonByIdUseCase());
     }
 
     @Bean
     public EditPokemonService editPokemonService() {
         return new EditPokemonService(editPokemonUseCase());
+    }
+
+    @Bean
+    public FindPokemonByIdUseCase findPokemonByIdUseCase() {
+        return new FindPokemonByIdUseCase(pokemonRepository);
     }
 
 }
