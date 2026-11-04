@@ -17,6 +17,7 @@ import es.etg.daw.dawes.store.pokemon.domain.model.Pokemon;
 import es.etg.daw.dawes.store.pokemon.infraestructure.mapper.PokemonMapper;
 import es.etg.daw.dawes.store.pokemon.infraestructure.web.mvc.dto.PokemonRequest;
 import es.etg.daw.dawes.store.pokemon.infraestructure.web.mvc.dto.PokemonResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -40,7 +41,9 @@ public class PokemonController {
 
   @PostMapping
   @ResponseBody
-  public String createPokemon(PokemonRequest request) {
+  public String createPokemon(
+                        @Valid 
+                        PokemonRequest request) {
     CreatePokemonCommand commando = pokemonMapper.toCommand(request);
 
     Pokemon pokemon = createPokemonService.createPokemon(commando);
