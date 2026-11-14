@@ -1,6 +1,6 @@
 # Arquitectura y estructura
 
-El código de Pokémon está separado en capas para mantener las reglas de negocio apartadas de los detalles web y de almacenamiento. La estructura sigue ideas de arquitectura limpia y organiza la funcionalidad por dominio. Se utiliza una arquitectura `Clean` para desacoplar todo lo posible el código y asi los posibles cambios sean lo mínimo
+El código de Pokémon está separado en capas para mantener las reglas de negocio apartadas de los detalles web y de almacenamiento. La estructura sigue ideas de arquitectura limpia y organiza la funcionalidad por dominio. Se utiliza una arquitectura `Clean` para desacoplar todo lo posible el código y asi los posibles cambios sean lo mínimo.
 
 ## Capas
 

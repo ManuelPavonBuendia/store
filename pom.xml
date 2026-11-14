@@ -88,21 +88,17 @@
 							<goal>compile</goal>
 						</goals>
 						<configuration>
-							<!-- 5. Configura los procesadores en el orden correcto -->
 							<annotationProcessorPaths>
-								<!-- Lombok primero -->
 								<path>
 									<groupId>org.projectlombok</groupId>
 									<artifactId>lombok</artifactId>
 									<version>${org.lombok.version}</version>
 								</path>
-								<!-- El binding va entre Lombok y MapStruct -->
 								<path>
 									<groupId>org.projectlombok</groupId>
 									<artifactId>lombok-mapstruct-binding</artifactId>
 									<version>${lombok-mapstruct-binding.version}</version>
 								</path>
-								<!-- MapStruct procesador al final -->
 								<path>
 									<groupId>org.mapstruct</groupId>
 									<artifactId>mapstruct-processor</artifactId>
