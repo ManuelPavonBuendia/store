@@ -1,4 +1,4 @@
-package es.etg.daw.dawes.store.pokemon.infraestructure.web.mvc.dto;
+package es.etg.daw.dawes.store.pokemon.infraestructure.web.rest.dto;
 
 import es.etg.daw.dawes.store.pokemon.infraestructure.web.validation.NombradoPokemon;
 import jakarta.validation.constraints.Max;
