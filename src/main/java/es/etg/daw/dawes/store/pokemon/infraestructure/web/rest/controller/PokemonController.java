@@ -90,9 +90,7 @@ public class PokemonController {
     return ResponseEntity.ok(pokemonMapper.toResponse(pokemon));
   }
 
-  @ResponseStatus(HttpStatus.BAD_REQUEST)
   @ExceptionHandler(MethodArgumentNotValidException.class)
-  @ResponseBody
   public String handleValidationExceptions(MethodArgumentNotValidException ex) {
 
     StringBuilder html = new StringBuilder(256);
