@@ -55,7 +55,6 @@ public class PokemonController {
     Pokemon pokemon = createPokemonService.createPokemon(comando);
     PokemonResponse response = pokemonMapper.toResponse(pokemon);
 
-    // Cabecera Location apuntando al recurso recién creado (REST best practice)
     URI location = ServletUriComponentsBuilder
         .fromCurrentRequest()
         .path("/{id}")
@@ -72,7 +71,7 @@ public class PokemonController {
         .map(pokemonMapper::toResponse)
         .toList();
 
-    return ResponseEntity.ok(pokemons); // HTTP 200 OK con la lista en el body
+    return ResponseEntity.ok(pokemons);
   }
 
   @DeleteMapping("/{id}")
