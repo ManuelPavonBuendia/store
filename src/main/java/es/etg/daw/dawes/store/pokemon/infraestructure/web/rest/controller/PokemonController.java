@@ -1,14 +1,13 @@
-package es.etg.daw.dawes.store.pokemon.infraestructure.web.mvc.controller;
+package es.etg.daw.dawes.store.pokemon.infraestructure.web.rest.controller;
 
+import java.net.URI;
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.util.HtmlUtils;
 
 import es.etg.daw.dawes.store.pokemon.application.command.CreatePokemonCommand;
@@ -19,8 +18,8 @@ import es.etg.daw.dawes.store.pokemon.application.service.CreatePokemonService;
 import es.etg.daw.dawes.store.pokemon.application.service.EditPokemonService;
 import es.etg.daw.dawes.store.pokemon.domain.model.Pokemon;
 import es.etg.daw.dawes.store.pokemon.infraestructure.mapper.PokemonMapper;
-import es.etg.daw.dawes.store.pokemon.infraestructure.web.mvc.dto.PokemonRequest;
-import es.etg.daw.dawes.store.pokemon.infraestructure.web.mvc.dto.PokemonResponse;
+import es.etg.daw.dawes.store.pokemon.infraestructure.web.rest.dto.PokemonRequest;
+import es.etg.daw.dawes.store.pokemon.infraestructure.web.rest.dto.PokemonResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -33,8 +32,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@Controller
-@RequestMapping("/pokemons")
+@RestController
+@RequestMapping("/api/v1/pokemons")
 @RequiredArgsConstructor
 
 public class PokemonController {
@@ -46,58 +45,49 @@ public class PokemonController {
   private final PokemonMapper pokemonMapper;
 
   @PostMapping
-  @ResponseBody
-  public String createPokemon(
-      @Valid PokemonRequest request) {
-    CreatePokemonCommand commando = pokemonMapper.toCommand(request);
+  public ResponseEntity<PokemonResponse> createPokemon(
+      @Valid @RequestBody PokemonRequest request) {
 
-    Pokemon pokemon = createPokemonService.createPokemon(commando);
+    CreatePokemonCommand comando = pokemonMapper.toCommand(request);
+    Pokemon pokemon = createPokemonService.createPokemon(comando);
+    PokemonResponse response = pokemonMapper.toResponse(pokemon);
 
-    return """
-        <!DOCTYPE html>
-        <html lang="es">
-          <head>
-            <meta charset="UTF-8">
-            <title>Producto</title>
-          </head>
-          <body>
-            <h1>Pokemon: %s - %s</h1>
-            <p>Tipo: %s </p>
-            <p>Precio: %s </p>
-            <p>Creado el: %s </p>
-          </body>
-        </html>
-        """.formatted(pokemon.getId(), pokemon.getNombre(), pokemon.getTipo(), pokemon.getPrecio(),
-        pokemon.getCreatedAt());
+    URI location = ServletUriComponentsBuilder
+        .fromCurrentRequest()
+        .path("/{id}")
+        .buildAndExpand(pokemon.getId())
+        .toUri();
+
+    return ResponseEntity.created(location).body(response);
   }
 
   @GetMapping
-  @ResponseBody
-  public List<PokemonResponse> allPokemon() {
-    return findPokemonService.findAll()
+  public ResponseEntity<List<PokemonResponse>> allPokemon() {
+    List<PokemonResponse> pokemons = findPokemonService.findAll()
         .stream()
         .map(pokemonMapper::toResponse)
         .toList();
+
+    return ResponseEntity.ok(pokemons);
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<?> deletePokemon(@PathVariable int id) {
+  public ResponseEntity<Void> deletePokemon(@PathVariable int id) {
     deletePokemonService.delete(id);
     return ResponseEntity.noContent().build();
-
   }
 
-  @ResponseBody
   @PutMapping("/{id}")
-  public PokemonResponse editPokemon(@PathVariable int id, @RequestBody PokemonRequest pokemonRequest) {
+  public ResponseEntity<PokemonResponse> editPokemon(
+      @PathVariable int id,
+      @Valid @RequestBody PokemonRequest pokemonRequest) {
+
     EditPokemonCommand comando = pokemonMapper.toCommand(id, pokemonRequest);
     Pokemon pokemon = editPokemonService.update(comando);
-    return pokemonMapper.toResponse(pokemon);
+    return ResponseEntity.ok(pokemonMapper.toResponse(pokemon));
   }
 
-  @ResponseStatus(HttpStatus.BAD_REQUEST)
   @ExceptionHandler(MethodArgumentNotValidException.class)
-  @ResponseBody
   public String handleValidationExceptions(MethodArgumentNotValidException ex) {
 
     StringBuilder html = new StringBuilder(256);
